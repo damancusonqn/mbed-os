@@ -253,12 +253,12 @@
             "modem_is_on_board": {
                 "help": "Value: Tells the build system that the modem is on-board as oppose to a plug-in shield/module.",
                 "value": 1,
-                "macro_name": "MODEM_ON_BOARD" 
+                "macro_name": "MODEM_ON_BOARD"
             },
             "modem_data_connection_type": {
                 "help": "Value: Defines how the modem is wired up to the MCU, e.g., data connection can be a UART or USB and so forth.",
                 "value": 1,
-                "macro_name": "MODEM_ON_BOARD_UART" 
+                "macro_name": "MODEM_ON_BOARD_UART"
             }
         },
         "macros": ["TARGET_LPC1768"],
@@ -1051,6 +1051,27 @@
         "release_versions": ["2", "5"],
         "device_name": "STM32F767ZI"
     },
+    "DAM_F765VG": {
+        "inherits": ["Target"],
+        "core": "Cortex-M7FD",
+        "extra_labels": ["STM", "STM32F7", "STM32F767", "STM32F767xI", "STM32F767ZI"],
+        "supported_toolchains": ["ARM", "uARM", "GCC_ARM", "IAR"],
+        "default_toolchain": "ARM",
+        "config": {
+            "d11_configuration": {
+                "help": "Value: PA_7 for the default board configuration, PB_5 in case of solder bridge update (SB121 off/ SB122 on)",
+                "value": "PA_7",
+                "macro_name": "STM32_D11_SPI_ETHERNET_PIN"
+            }
+        },
+        "supported_form_factors": ["ARDUINO"],
+        "macros": ["TRANSACTION_QUEUE_SIZE_SPI=2", "USBHOST_OTHER"],
+        "detect_code": ["0818"],
+        "device_has": ["ANALOGIN", "ANALOGOUT", "CAN", "I2C", "I2CSLAVE", "I2C_ASYNCH", "INTERRUPTIN", "LOWPOWERTIMER", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "RTC", "SERIAL", "SERIAL_ASYNCH", "SLEEP", "SPI", "SPISLAVE", "SPI_ASYNCH", "STDIO_MESSAGES", "TRNG"],
+        "features": ["LWIP"],
+        "release_versions": ["2", "5"],
+        "device_name": "STM32F765VG"
+    },
     "NUCLEO_L011K4": {
         "inherits": ["Target"],
         "core": "Cortex-M0+",
@@ -1354,12 +1375,12 @@
             "modem_is_on_board": {
                 "help": "Value: Tells the build system that the modem is on-board as oppose to a plug-in shield/module.",
                 "value": 1,
-                "macro_name": "MODEM_ON_BOARD" 
+                "macro_name": "MODEM_ON_BOARD"
             },
             "modem_data_connection_type": {
                 "help": "Value: Defines how an on-board modem is wired up to the MCU, e.g., data connection can be a UART or USB and so forth.",
                 "value": 1,
-                "macro_name": "MODEM_ON_BOARD_UART" 
+                "macro_name": "MODEM_ON_BOARD_UART"
             }
         },
         "macros": ["HSE_VALUE=26000000", "VECT_TAB_OFFSET=0x08010000","TRANSACTION_QUEUE_SIZE_SPI=2", "RTC_LSI=1"],
