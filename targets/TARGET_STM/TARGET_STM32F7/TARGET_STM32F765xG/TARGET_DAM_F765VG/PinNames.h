@@ -190,17 +190,17 @@ typedef enum {
     D15         = PB_8,
 
     // Generic signals namings
-    LED1        = PB_0,  // LD1 = GREEN
-    LED2        = PB_7,  // Blue
-    LED3        = PB_14, // Red
-    LED4        = PB_0,
-    USER_BUTTON = PC_13,
+    LED1        = PD_0,  // LD1 = Orange
+    LED2        = PD_1,  // Green
+    LED3        = PD_2, // Red
+    LED4        = PD_3, //Yellow
+    // USER_BUTTON = PC_13,
     // Standardized button names
-    BUTTON1 = USER_BUTTON,
-    SERIAL_TX   = PD_8, // Virtual Com Port
-    SERIAL_RX   = PD_9, // Virtual Com Port
-    USBTX       = PD_8, // Virtual Com Port
-    USBRX       = PD_9, // Virtual Com Port
+    // BUTTON1 = USER_BUTTON,
+    SERIAL_TX   = PA_0, // Virtual Com Port
+    SERIAL_RX   = PA_1, // Virtual Com Port
+    USBTX       = PA_0, // Virtual Com Port
+    USBRX       = PA_1, // Virtual Com Port
     I2C_SCL     = D15,
     I2C_SDA     = D14,
     SPI_MOSI    = D11,
