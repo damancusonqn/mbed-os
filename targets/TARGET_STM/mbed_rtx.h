@@ -209,6 +209,12 @@
 #define INITIAL_SP              (0x20050000UL)
 #endif
 
+#elif defined(TARGET_STM32F765VG)
+
+#ifndef INITIAL_SP
+#define INITIAL_SP              (0x20080000UL)
+#endif
+
 #elif defined(TARGET_STM32F767ZI)
 
 #ifndef INITIAL_SP
