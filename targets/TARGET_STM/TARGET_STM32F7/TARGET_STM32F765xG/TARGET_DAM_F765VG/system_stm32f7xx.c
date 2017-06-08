@@ -83,9 +83,7 @@
 
 HAL_StatusTypeDef HAL_Init(void);
 
-#if !defined  (HSE_VALUE)
-  #define HSE_VALUE    ((uint32_t)25000000) /*!< Default value of the External oscillator in Hz */
-#endif /* HSE_VALUE */
+#define HSE_VALUE    ((uint32_t)25000000) /*!< Value of the External oscillator in Hz */
 
 #if !defined  (HSI_VALUE)
   #define HSI_VALUE    ((uint32_t)16000000) /*!< Value of the Internal oscillator in Hz*/
@@ -752,11 +750,20 @@ uint8_t SetSysClock_PLL_HSE(uint8_t bypass)
   {
     RCC_OscInitStruct.HSEState          = RCC_HSE_BYPASS; /* External clock on OSC_IN */
   }
-  // Warning: this configuration is for a 8 MHz xtal clock only
+  // // Warning: this configuration is for a 8 MHz xtal clock only
+  // RCC_OscInitStruct.PLL.PLLState        = RCC_PLL_ON;
+  // RCC_OscInitStruct.PLL.PLLSource       = RCC_PLLSOURCE_HSE;
+  // RCC_OscInitStruct.PLL.PLLM            = 8;             // VCO input clock = 1 MHz (8 MHz / 8)
+  // RCC_OscInitStruct.PLL.PLLN            = 432;           // VCO output clock = 432 MHz (1 MHz * 432)
+  // RCC_OscInitStruct.PLL.PLLP            = RCC_PLLP_DIV2; // PLLCLK = 216 MHz (432 MHz / 2)
+  // RCC_OscInitStruct.PLL.PLLQ            = 9;             // USB clock = 48 MHz (432 MHz / 9) --> OK for USB
+  // RCC_OscInitStruct.PLL.PLLR            = 2;             // I2S clock
+
+  // Warning: this configuration is for a 25 MHz xtal clock only
   RCC_OscInitStruct.PLL.PLLState        = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource       = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM            = 8;             // VCO input clock = 1 MHz (8 MHz / 8)
-  RCC_OscInitStruct.PLL.PLLN            = 432;           // VCO output clock = 432 MHz (1 MHz * 432)
+  RCC_OscInitStruct.PLL.PLLM            = 25;            // VCO input clock = 1 MHz (25 MHz / 25)
+  RCC_OscInitStruct.PLL.PLLN            = 432;           // DM: VCO output clock = 192 MHz (1 MHz * 192), systimer should be 96MHz
   RCC_OscInitStruct.PLL.PLLP            = RCC_PLLP_DIV2; // PLLCLK = 216 MHz (432 MHz / 2)
   RCC_OscInitStruct.PLL.PLLQ            = 9;             // USB clock = 48 MHz (432 MHz / 9) --> OK for USB
   RCC_OscInitStruct.PLL.PLLR            = 2;             // I2S clock
@@ -774,8 +781,7 @@ uint8_t SetSysClock_PLL_HSE(uint8_t bypass)
 
   // Select PLL as system clock source and configure the HCLK, PCLK1 and PCLK2 clocks dividers
   RCC_ClkInitStruct.ClockType      = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
-  RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_HSI; //experiment, keep internal clock
-  // DM: RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK; // 216 MHz
+  RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK; // 216 MHz
   RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;         // 216 MHz
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;           //  54 MHz
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;           // 108 MHz
@@ -797,12 +803,14 @@ uint8_t SetSysClock_PLL_HSI(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
 
-  // Enable CPU L1-Cache
-  SCB_EnableICache();
-  SCB_EnableDCache();
-
   // Enable power clock
   __PWR_CLK_ENABLE();
+
+  // Enable CPU L1-Cache
+  // SCB_EnableICache();
+  // SCB_EnableDCache();
+
+
 
   // Enable HSI oscillator and activate PLL with HSI as source
   RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_HSI;
