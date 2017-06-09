@@ -807,8 +807,8 @@ uint8_t SetSysClock_PLL_HSI(void)
   __PWR_CLK_ENABLE();
 
   // Enable CPU L1-Cache
-  // SCB_EnableICache();
-  // SCB_EnableDCache();
+  SCB_EnableICache();
+  SCB_EnableDCache();
 
 
 
@@ -854,6 +854,14 @@ uint8_t SetSysClock_PLL_HSI(void)
 /**
   * @}
   */
+/******************************************************************************/
+/*            Hard Fault Handler                                              */
+/******************************************************************************/
+void HardFault_Handler(void)
+{
+    printf("Hard Fault\n");
+    NVIC_SystemReset();
+}
 
 /**
   * @}

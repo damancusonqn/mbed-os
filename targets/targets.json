@@ -1057,14 +1057,6 @@
         "extra_labels": ["STM", "STM32F7", "STM32F765", "STM32F765xG", "STM32F765VG"],
         "supported_toolchains": ["ARM", "uARM", "GCC_ARM", "IAR"],
         "default_toolchain": "ARM",
-        "config": {
-            "d11_configuration": {
-                "help": "Value: PA_7 for the default board configuration, PB_5 in case of solder bridge update (SB121 off/ SB122 on)",
-                "value": "PA_7",
-                "macro_name": "STM32_D11_SPI_ETHERNET_PIN"
-            }
-        },
-        "supported_form_factors": ["ARDUINO"],
         "macros": ["TRANSACTION_QUEUE_SIZE_SPI=2", "USBHOST_OTHER"],
         "detect_code": ["1234"],
         "device_has": ["ANALOGIN", "ANALOGOUT", "CAN", "I2C", "I2CSLAVE", "I2C_ASYNCH", "INTERRUPTIN", "LOWPOWERTIMER", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "RTC", "SERIAL", "SERIAL_ASYNCH", "SLEEP", "SPI", "SPISLAVE", "SPI_ASYNCH", "STDIO_MESSAGES", "TRNG"],
