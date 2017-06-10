@@ -123,39 +123,39 @@ typedef enum {
     PE_14 = 0x4E,
     PE_15 = 0x4F,
 
-    PF_0  = 0x50,
-    PF_1  = 0x51,
-    PF_2  = 0x52,
-    PF_3  = 0x53,
-    PF_4  = 0x54,
-    PF_5  = 0x55,
-    PF_6  = 0x56,
-    PF_7  = 0x57,
-    PF_8  = 0x58,
-    PF_9  = 0x59,
-    PF_10 = 0x5A,
-    PF_11 = 0x5B,
-    PF_12 = 0x5C,
-    PF_13 = 0x5D,
-    PF_14 = 0x5E,
-    PF_15 = 0x5F,
+    // PF_0  = 0x50,
+    // PF_1  = 0x51,
+    // PF_2  = 0x52,
+    // PF_3  = 0x53,
+    // PF_4  = 0x54,
+    // PF_5  = 0x55,
+    // PF_6  = 0x56,
+    // PF_7  = 0x57,
+    // PF_8  = 0x58,
+    // PF_9  = 0x59,
+    // PF_10 = 0x5A,
+    // PF_11 = 0x5B,
+    // PF_12 = 0x5C,
+    // PF_13 = 0x5D,
+    // PF_14 = 0x5E,
+    // PF_15 = 0x5F,
 
-    PG_0  = 0x60,
-    PG_1  = 0x61,
-    PG_2  = 0x62,
-    PG_3  = 0x63,
-    PG_4  = 0x64,
-    PG_5  = 0x65,
-    PG_6  = 0x66,
-    PG_7  = 0x67,
-    PG_8  = 0x68,
-    PG_9  = 0x69,
-    PG_10 = 0x6A,
-    PG_11 = 0x6B,
-    PG_12 = 0x6C,
-    PG_13 = 0x6D,
-    PG_14 = 0x6E,
-    PG_15 = 0x6F,
+    // PG_0  = 0x60,
+    // PG_1  = 0x61,
+    // PG_2  = 0x62,
+    // PG_3  = 0x63,
+    // PG_4  = 0x64,
+    // PG_5  = 0x65,
+    // PG_6  = 0x66,
+    // PG_7  = 0x67,
+    // PG_8  = 0x68,
+    // PG_9  = 0x69,
+    // PG_10 = 0x6A,
+    // PG_11 = 0x6B,
+    // PG_12 = 0x6C,
+    // PG_13 = 0x6D,
+    // PG_14 = 0x6E,
+    // PG_15 = 0x6F,
 
     PH_0  = 0x70,
     PH_1  = 0x71,
@@ -165,49 +165,37 @@ typedef enum {
     ADC_VREF = 0xF1,
     ADC_VBAT = 0xF2,
 
-    // Arduino connector namings
-    A0          = PA_3,
-    A1          = PC_0,
-    A2          = PC_3,
-    A3          = PF_3,
-    A4          = PF_5,
-    A5          = PF_10,
-    D0          = PG_9,
-    D1          = PG_14,
-    D2          = PF_15,
-    D3          = PE_13,
-    D4          = PF_14,
-    D5          = PE_11,
-    D6          = PE_9,
-    D7          = PF_13,
-    D8          = PF_12,
-    D9          = PD_15,
-    D10         = PD_14,
-    D11         = STM32_D11_SPI_ETHERNET_PIN, /* config in targets.json file */
-    D12         = PA_6,
-    D13         = PA_5,
-    D14         = PB_9,
-    D15         = PB_8,
-
     // Generic signals namings
-    LED1        = PD_0,  // LD1 = Orange
-    LED2        = PD_1,  // Green
-    LED3        = PD_2, // Red
-    LED4        = PD_3, //Yellow
-    // USER_BUTTON = PC_13,
-    // Standardized button names
-    // BUTTON1 = USER_BUTTON,
-    SERIAL_TX   = PA_0, // Virtual Com Port
-    SERIAL_RX   = PA_1, // Virtual Com Port
-    USBTX       = PA_0, // Virtual Com Port
-    USBRX       = PA_1, // Virtual Com Port
-    I2C_SCL     = D15,
-    I2C_SDA     = D14,
-    SPI_MOSI    = D11,
-    SPI_MISO    = D12,
-    SPI_SCK     = D13,
-    SPI_CS      = D10,
-    PWM_OUT     = D9,
+    LED1        = PD_0,  //Orange
+    LED2        = PD_1,  //Green
+    LED3        = PD_2,  //Red
+    LED4        = PD_3,  //Yellow
+
+    IO1         = PD_14,
+    IO2         = PD_13,
+    IO3         = PD_12,
+    IO4         = PD_11,
+    IO5         = PD_10,
+    IO6         = PD_9,
+
+    PWM1        = PD_14, //TIM4_CH3
+    PWM2        = PD_13, //TIM4_CH2
+    PWM3        = PD_12, //TIM4_CH1
+
+    UARTA_TX   = PA_0, //UART5_TX --> FTDI_UART_B_RXD
+    UARTA_RX   = PA_1, //UART5_RX --> FTDI_UART_B_TXD
+
+    /*We have to point stdio somewhere, consider using an extra USART for the next board revision.*/
+    USBTX       = PA_0, //PD_8, // Virtual Com Port, used by GreenteaSerial::GreenteaSerial() : mbed::RawSerial
+    USBRX       = PA_1, //PD_9, // Virtual Com Port
+
+    // I2C_SCL     = D15,
+    // I2C_SDA     = D14,
+    // SPI_MOSI    = D11,
+    // SPI_MISO    = D12,
+    // SPI_SCK     = D13,
+    // SPI_CS      = D10,
+    // PWM_OUT     = D9,
 
     // Not connected
     NC = (int)0xFFFFFFFF
