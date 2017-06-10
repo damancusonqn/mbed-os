@@ -182,12 +182,15 @@ typedef enum {
     PWM2        = PD_13, //TIM4_CH2
     PWM3        = PD_12, //TIM4_CH1
 
-    UARTA_TX   = PA_0, //UART5_TX --> FTDI_UART_B_RXD
-    UARTA_RX   = PA_1, //UART5_RX --> FTDI_UART_B_TXD
+    FTDI_UARTA_TX   = PA_0, //UART4_TX --> FTDI_UART_A_RXD
+    FTDI_UARTA_RX   = PA_1, //UART4_RX --> FTDI_UART_A_TXD
+
+    FTDI_UARTB_TX   = PB_13, //UART5_TX --> FTDI_UART_B_RXD
+    FTDI_UARTB_RX   = PB_12, //UART5_RX --> FTDI_UART_B_TXD
 
     /*We have to point stdio somewhere, consider using an extra USART for the next board revision.*/
-    USBTX       = PA_0, //PD_8, // Virtual Com Port, used by GreenteaSerial::GreenteaSerial() : mbed::RawSerial
-    USBRX       = PA_1, //PD_9, // Virtual Com Port
+    USBTX       = PB_13, //PD_8, // Virtual Com Port, used by GreenteaSerial::GreenteaSerial() : mbed::RawSerial
+    USBRX       = PB_12, //PD_9, // Virtual Com Port
 
     // I2C_SCL     = D15,
     // I2C_SDA     = D14,
