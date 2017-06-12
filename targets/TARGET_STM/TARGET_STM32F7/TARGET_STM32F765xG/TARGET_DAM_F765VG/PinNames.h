@@ -165,6 +165,15 @@ typedef enum {
     ADC_VREF = 0xF1,
     ADC_VBAT = 0xF2,
 
+    /* NOTE: the analog channels are shared for the 3 ADC modules, the current
+            configuration uses ADC_1 (multiplexing), it's possible to use 3 of them
+            to sample in simultaneous
+     */
+    AI_2        = PC_0, //ADC_1/2/3_IN10
+    AI_3        = PC_1, //ADC_1/2/3_IN11
+    AI_4        = PC_2, //ADC_1/2/3_IN12
+    AI_5        = PC_3, //ADC_1/2/3_IN13
+
     // Generic signals namings
     LED1        = PD_0,  //Orange
     LED2        = PD_1,  //Green
