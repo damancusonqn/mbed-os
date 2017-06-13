@@ -38,6 +38,7 @@ extern "C" {
 #endif
 
 typedef enum {
+/* PORT A:*/
     PA_0  = 0x00,
     PA_1  = 0x01,
     PA_2  = 0x02,
@@ -55,6 +56,7 @@ typedef enum {
     PA_14 = 0x0E,
     PA_15 = 0x0F,
 
+/* PORT B:*/
     PB_0  = 0x10,
     PB_1  = 0x11,
     PB_2  = 0x12,
@@ -72,6 +74,7 @@ typedef enum {
     PB_14 = 0x1E,
     PB_15 = 0x1F,
 
+/* PORT C:*/
     PC_0  = 0x20,
     PC_1  = 0x21,
     PC_2  = 0x22,
@@ -89,6 +92,7 @@ typedef enum {
     PC_14 = 0x2E,
     PC_15 = 0x2F,
 
+/* PORT D:*/
     PD_0  = 0x30,
     PD_1  = 0x31,
     PD_2  = 0x32,
@@ -106,6 +110,7 @@ typedef enum {
     PD_14 = 0x3E,
     PD_15 = 0x3F,
 
+/* PORT D:*/
     PE_0  = 0x40,
     PE_1  = 0x41,
     PE_2  = 0x42,
@@ -123,48 +128,17 @@ typedef enum {
     PE_14 = 0x4E,
     PE_15 = 0x4F,
 
-    // PF_0  = 0x50,
-    // PF_1  = 0x51,
-    // PF_2  = 0x52,
-    // PF_3  = 0x53,
-    // PF_4  = 0x54,
-    // PF_5  = 0x55,
-    // PF_6  = 0x56,
-    // PF_7  = 0x57,
-    // PF_8  = 0x58,
-    // PF_9  = 0x59,
-    // PF_10 = 0x5A,
-    // PF_11 = 0x5B,
-    // PF_12 = 0x5C,
-    // PF_13 = 0x5D,
-    // PF_14 = 0x5E,
-    // PF_15 = 0x5F,
-
-    // PG_0  = 0x60,
-    // PG_1  = 0x61,
-    // PG_2  = 0x62,
-    // PG_3  = 0x63,
-    // PG_4  = 0x64,
-    // PG_5  = 0x65,
-    // PG_6  = 0x66,
-    // PG_7  = 0x67,
-    // PG_8  = 0x68,
-    // PG_9  = 0x69,
-    // PG_10 = 0x6A,
-    // PG_11 = 0x6B,
-    // PG_12 = 0x6C,
-    // PG_13 = 0x6D,
-    // PG_14 = 0x6E,
-    // PG_15 = 0x6F,
-
+/* PORT H:*/
     PH_0  = 0x70,
     PH_1  = 0x71,
 
-    // ADC internal channels
+/* ADC internal channels: */
+
     ADC_TEMP = 0xF0,
     ADC_VREF = 0xF1,
     ADC_VBAT = 0xF2,
 
+/* Internal ADC channels : */
     /* NOTE: the analog channels are shared for the 3 ADC modules, the current
             configuration uses ADC_1 (multiplexing), it's possible to use 3 of them
             to sample in simultaneous
@@ -174,40 +148,49 @@ typedef enum {
     AI_4        = PC_2, //ADC_1/2/3_IN12
     AI_5        = PC_3, //ADC_1/2/3_IN13
 
-    // Generic signals namings
+
+/* Indication LEDs: */
     LED1        = PD_0,  //Orange
     LED2        = PD_1,  //Green
     LED3        = PD_2,  //Red
     LED4        = PD_3,  //Yellow
 
+/* TTL Input / Ouputs */
     IO1         = PD_14,
     IO2         = PD_13,
     IO3         = PD_12,
     IO4         = PD_11,
     IO5         = PD_10,
     IO6         = PD_9,
+    PWM1        = PD_14, //pin IO1, TIM4_CH3
+    PWM2        = PD_13, //pin IO2, TIM4_CH2
+    PWM3        = PD_12, //pin IO3, TIM4_CH1
 
-    PWM1        = PD_14, //TIM4_CH3
-    PWM2        = PD_13, //TIM4_CH2
-    PWM3        = PD_12, //TIM4_CH1
-
+/* USART to USB connections: */
     FTDI_UARTA_TX   = PA_0, //UART4_TX --> FTDI_UART_A_RXD
     FTDI_UARTA_RX   = PA_1, //UART4_RX --> FTDI_UART_A_TXD
-
     FTDI_UARTB_TX   = PB_13, //UART5_TX --> FTDI_UART_B_RXD
     FTDI_UARTB_RX   = PB_12, //UART5_RX --> FTDI_UART_B_TXD
-
     /*We have to point stdio somewhere, consider using an extra USART for the next board revision.*/
     USBTX       = PB_13, //PD_8, // Virtual Com Port, used by GreenteaSerial::GreenteaSerial() : mbed::RawSerial
     USBRX       = PB_12, //PD_9, // Virtual Com Port
 
-    // I2C_SCL     = D15,
-    // I2C_SDA     = D14,
-    // SPI_MOSI    = D11,
-    // SPI_MISO    = D12,
-    // SPI_SCK     = D13,
-    // SPI_CS      = D10,
-    // PWM_OUT     = D9,
+/* ADS8901x Connections: */
+    //ADC0, SPI_1:
+    CH0_CS     = PA_4,  //#Chip_select, SPI_1_NS
+    CH0_MOSI    = PB_5,  //ADC_SDI0, Master Output / slave input
+    CH0_MISO    = PB_4,  //ADC_SDO0,  Master Input / slave ouput
+    CH0_CLK     = PB_3,  //ADC_SCLK0, Clock
+    CH0_CONVST  = PB_0,  //Start_conversion
+    CH0_RVS     = PB_1,  //Conversion STATUS (high-to-low -> start, low-to-high -> end)
+
+    //ADC1, SPI_4:
+    CH1_CS     = PE_4,  //#Chip_select
+    CH1_MOSI    = PE_6,  //ADC_SDI1, Master Output / slave input
+    CH1_MISO    = PE_5,  //ADC_SDO1,  Master Input / slave ouput
+    CH1_CLK     = PE_2,  //ADC_SCLK1, Clock
+    CH1_CONVST  = PE_7,  //Start_conversion
+    CH1_RVS     = PE_8,  //Conversion STATUS (high-to-low -> start, low-to-high -> end)
 
     // Not connected
     NC = (int)0xFFFFFFFF
