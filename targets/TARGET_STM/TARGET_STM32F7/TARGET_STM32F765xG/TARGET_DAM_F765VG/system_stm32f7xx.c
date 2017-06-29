@@ -740,6 +740,7 @@ uint8_t SetSysClock_PLL_HSE(uint8_t bypass)
   // Enable power clock
   __PWR_CLK_ENABLE();
 
+
   // Enable HSE oscillator and activate PLL with HSE as source
   RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_HSE;
   if (bypass == 0)
@@ -859,10 +860,8 @@ uint8_t SetSysClock_PLL_HSI(void)
 /******************************************************************************/
 void HardFault_Handler(void)
 {
-    printf("Hard Fault\n");
     NVIC_SystemReset();
 }
-
 /**
   * @}
   */
